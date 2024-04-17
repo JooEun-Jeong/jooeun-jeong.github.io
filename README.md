@@ -1,210 +1,132 @@
-# Neumorphism <!-- omit in toc -->
+# Tale
 
-> Neumorphism designed Jekyll theme for personal websites, portfolios and resumes.
+[![Gem Version](https://badge.fury.io/rb/tale.svg)](https://badge.fury.io/rb/tale)
 
-* Featured on [JAMstack Themes](https://jamstackthemes.dev/theme/jekyll-neumorphism/)
-* Featured on [Jekyll Themes](https://jekyll-themes.com/neumorphism/)
-* Featured on [jekyllthemes](http://jekyllthemes.org/themes/neumorphism/)
+Tale is a minimal Jekyll theme curated for storytellers. Checkout the demo [here](https://chesterhow.github.io/tale/).
 
-[![Open Issues](https://badgen.net/github/open-issues/longpdo/neumorphism)](https://github.com/longpdo/neumorphism/issues)
-[![License](https://badgen.net/github/license/longpdo/neumorphism)](LICENSE)
-<a href="https://jekyll-themes.com">
-    <img src="https://img.shields.io/badge/featured%20on-JT-red.svg" height="20" alt="Jekyll Themes Shield" >
-</a>
+![Tale screenshot](http://i.imgur.com/pXZrtmo.png)
 
-[View Demo](https://longpdo.github.io/neumorphism/) · [Report Bug](https://github.com/longpdo/neumorphism/issues) · [Request Feature](https://github.com/longpdo/neumorphism/issues)
+## Features
+- Easy installation
+- Compatible with GitHub Pages
+- Responsive design (looks just as good on mobile)
+- Syntax highlighting, with the help of Pygments
+- Markdown and HTML text formatting
+- Pagination of posts
+- Sticky posts
+- Tags
+- Excerpt management
+- [Disqus comments (can be enabled if needed)](#enabling-comments)
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents <!-- omit in toc -->
+## Installation
+There are 3 ways to install this theme
 
-* [About The Project](#about-the-project)
-  * [Built With](#built-with)
-  * [Features](#features)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-  * [Personalize and Customize](#personalize-and-customize)
-    * [_config.yml](#_configyml)
-    * [Github Metadata Plugin](#github-metadata-plugin)
-    * [_data/*.yml](#_datayml)
-    * [Particles.js](#particlesjs)
-* [Contributing](#contributing)
-* [License](#license)
-* [Acknowledgements](#acknowledgements)
+1. Install it as a Ruby Gem (for self-hosted sites)
+2. Install it with the `jekyll-remote-theme` plugin (for GitHub Pages hosted sites)
+3. Fork the project directly
 
-<!-- ABOUT THE PROJECT -->
+### Ruby Gem method
+1. Add this line to your `Gemfile`:
 
-## About The Project
-
-[![Project Screenshot][product-screenshot]](https://longpdo.github.io/neumorphism/)
-
-This is a personal website built with `Jekyll` and hosted on `Github Pages`, which is based on the new `Neumorphism` design trend and was developed with a mobile-first approach. This can be used by developers, who want to showcase their resume and portfolio. If you want to use this for your own website, fork this repository and then refer to [personalize and customize](#personalize-and-customize).
-
-### Built With
-
-* [Jekyll](https://jekyllrb.com/)
-
-### Features
-
-* Mobile-First Responsive Design
-* Animated preloader animation
-* Landing Page with animated background with [particles.js](https://vincentgarreau.com/particles.js/), a Typing Carousel and animated social icons
-* Dark Neumorphism Design on main content
-* [Animations On Scroll](https://michalsnik.github.io/aos/)
-* Filterable *Skills* word cloud
-* [Github's API](https://developer.github.com/v3/) automatically populating the *Open Source Projects* section
-* Gulp dev workflow with [BrowserSync](https://browsersync.io/), [Autoprefixer](https://autoprefixer.github.io/) and `JS` & `SCSS` minifying.
-* [Google Analytics](https://analytics.google.com/)
-
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-`The commands and instructions I provide are for MacOS - please look up the specific commands for your OS on your own.`
-
-### Prerequisites
-
-* [NodeJS](https://nodejs.org/en/)
-
-```sh
-brew install node
+```ruby
+gem "tale"
 ```
 
-If you need to switch between Node versions regurlarly, I would recommend to install Node via [Node Version Manager](https://github.com/nvm-sh/nvm/blob/master/README.md#manual-install).
+2. Install the theme's gems and dependencies:
 
-* [Jekyll](https://jekyllrb.com/)
-
-```sh
-gem install bundler jekyll
+```bash
+$ bundle
 ```
 
-For more information, refer to [this](https://jekyllrb.com/docs/installation/).
+3. In `_config.yml` add these lines:
 
-* [Yarn](https://yarnpkg.com/)
+```yaml
+theme:      tale
 
-```sh
-npm install -g yarn
+permalink:  /:year-:month-:day/:title
+paginate:   5
 ```
 
-### Installation
+Remove any other `theme:` lines.
 
-> Recommended way: If you want to contribute to this theme or open issues due to problems implementing this on your own, I would recommend forking the repository directly. This makes it easier for me to solve open issues and questions or check pull requests.
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
 
-1.1: Fork the repository (using the `Fork` button at the top) and then clone the repository
+5. In `about.md`, change the `layout:` field to `post`:
 
-```sh
-# Replace {YOUR_USERNAME} with your actual username
-git clone https://github.com/{YOUR_USERNAME}/neumorphism.git
+```Markdown
+layout: post
 ```
 
-or
+### GitHub Pages method
+1. Add these 2 lines in to your `Gemfile`:
 
-1.2: Create your own repository (using the green `Use this template` button at the top) and then clone the repository
-
-```sh
-# Replace {YOUR_USERNAME}, {YOUR_REPOSITORY} with the actual values
-git clone https://github.com/{YOUR_USERNAME}/{YOUR_REPOSITORY}.git
+```ruby
+gem "jekyll-remote-theme"
+gem "jekyll-paginate"
 ```
 
-2: Change directory into neumorphism
+2. Install the newly added gems:
 
-```sh
-cd neumorphism
+```bash
+$ bundle
 ```
 
-3: Install dependencies
+3. In `_config.yml` add these lines:
 
-```sh
-yarn
-bundle install
+```yaml
+remote_theme: chesterhow/tale
+
+permalink:    /:year-:month-:day/:title
+paginate:     5
+
+plugins:
+  - jekyll-paginate
+  - jekyll-remote-theme
 ```
 
-<!-- USAGE EXAMPLES -->
+Remove any other `theme:` or `remote_theme:` lines.
+
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
+
+5. In `about.md`, change the `layout:` field to `post`:
+
+```Markdown
+layout: post
+```
+
+### Fork method
+1. Fork this repository
+
+2. Delete the unnecessary files/folders: `CODE_OF_CONDUCT.md`, `LICENSE`, `README.md`, `tale.gemspec`
+
+3. Delete the `baseurl` line in `_config.yml`:
+
+```yaml
+baseurl:  "/tale"   # delete this line
+```
 
 ## Usage
+Once you've installed the theme, you're ready to work on your Jekyll site. To start off, I would recommend updating `_config.yml` with your site's details.
 
-* Run and develop locally with live server at `http://localhost:4000`, this will also build production-ready `JS` and `SCSS` assets with every change
+To build and serve your site, run:
 
-```sh
-gulp
+```bash
+$ bundle exec jekyll serve
 ```
 
-* After committing and pushing, see the `Settings` page of your repository to see where your site is published at via `Github Pages`.
+And you're all set! Head over to http://127.0.0.1:4000/ to see your site in action.
 
-### Personalize and Customize
+### Enabling Comments
+Comments are disabled by default. To enable them, look for the following line in `_config.yml` and change `jekyll-tale` to your site's Disqus id.
 
-#### _config.yml
-
-Edit `_config.yml` to personalize your site. For documentation, refer to [docs/config.md](https://github.com/longpdo/neumorphism/blob/master/docs/config.md).
-
-#### Github Metadata Plugin
-
-If you want to automatically have your Github repositories pulled for the *Open Source Projects* section, then you also need to authenticate yourself for the Github Metadata plugin to work.
-
-You need to generate a new personal access token on GitHub:
-
-* Go to the [Github Token site](https://github.com/settings/tokens/new)
-* Select the scope `public_repository`, and add a description.
-* Confirm and save the settings. Copy the token you see on the page.
-* Create a `.env` file inside your repository and add your generated `JEKYLL_GITHUB_TOKEN`:
-
-```text
-JEKYLL_GITHUB_TOKEN=0YOUR0GENERATED0TOKEN0
+```yml
+disqus: jekyll-tale
 ```
 
-To complete the configuration for the Github Metadata plugin, you also need to change the value of `repository` inside `_config.yml`. After this, you should the Github Metadata plugin should work properly.
-
-For optimal results, you should make sure, that every Github project, you want included on this portfolio, has added following informations on Github:
-
-* Description
-* Homepage link, if there is a live version of it
-* Topics
-
-Example:
-![Github Repository Information Example][github-repo-info]
-
-#### _data/*.yml
-
-Edit files inside `_data` to add information to the portfolio. For documentation, refer to [docs/data.md](https://github.com/longpdo/neumorphism/blob/master/docs/data.md).
-
-#### Particles.js
-
-Edit `assets/particles.json` to customize the landing page backgorund animation. For more information, refer to [this](https://github.com/VincentGarreau/particles.js/#options).
-
-<!-- CONTRIBUTING -->
+Next, add `comments: true` to the YAML front matter of the posts which you would like to enable comments for.
 
 ## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<!-- LICENSE -->
+Found a bug or have a suggestion? Feel free to create an issue or make a pull request!
 
 ## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-
-* [Font Awesome](https://fontawesome.com/)
-* [Normalize.css](https://necolas.github.io/normalize.css/)
-* Based Preloader on [Codrin Pavel's](https://codepen.io/zerospree/pen/aCjAz) version
-* Typing Carousel by [Gregory Schier](https://codepen.io/gschier/pen/jkivt)
-* Social Button Animation by [Stéphane Lyver](https://codepen.io/wouwi/pen/Lwrmi)
-* Adapted [Damian Jankowski's](https://codepen.io/dolaron/pen/rNadmOE) color palette for the neumorphism design
-* Based Timeline on [Krishna Babu's](https://codepen.io/krishnab/pen/OPwqbW) version
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[product-screenshot]: https://raw.githubusercontent.com/longpdo/neumorphism/master/docs/screenshot.gif
-[github-repo-info]: https://raw.githubusercontent.com/longpdo/neumorphism/master/docs/github-repo-info.png
+See [LICENSE](https://github.com/chesterhow/tale/blob/master/LICENSE)
